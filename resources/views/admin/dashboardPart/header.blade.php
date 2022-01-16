@@ -8,8 +8,8 @@
       <nav class="nav">
         <div class="dropdown">
           <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-            <span class="logged-name">Jane<span class="hidden-md-down"> Doe</span></span>
-            <img src="{{asset('backend/img/img3.jpg')}} " class="wd-32 rounded-circle" alt="">
+            <span class="logged-name"><span class="hidden-md-down">{{ Auth::user()->name }}</span></span>
+            <img src="{{ Auth::user()->profile_photo_url }} " class="wd-32 rounded-circle" alt="">
           </a>
           <div class="dropdown-menu dropdown-menu-header wd-200">
             <ul class="list-unstyled user-profile-nav">
