@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\auth\UserSettingsController;
+use App\Http\Controllers\admin\categoryAndBrands\categoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +20,39 @@ Route::get('/', function () {
 });
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('admin.index');
-})->name('dashboard');
 
+
+
+
+
+
+
+
+
+
+
+
+// ---------->Admin Panel Route Group<----------
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('admin.index');
+    })->name('dashboard');
+
+
+
+    //User Settings
+    Route::get('/user/settings',[UserSettingsController::class,'userSettings'])->name('user.settings');
+
+    //Admin Password Update
+    Route::post('/update/password',[UserSettingsController::class,'adminPasswordUpdate'])->name('admin.password.update');
+
+
+    //---------->Category<----------
+
+    //Category List
+    Route::get('/category/all',[categoryController::class,'allCategory'])->name('category.all');
+
+    
+});
