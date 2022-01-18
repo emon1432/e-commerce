@@ -43,6 +43,12 @@
 
   <!-- Starlight CSS -->
   <link rel="stylesheet" href="{{asset('backend/css/starlight.css')}} ">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
+
+  <script src="{{asset('backend/lib/jquery/jquery.js')}} "></script>
+
+
+
 </head>
 
 <body>
@@ -68,11 +74,10 @@
   </div><!-- sl-mainpanel -->
   <!-- ########## END: MAIN PANEL ########## -->
 
-
-  
-  <script src="{{asset('backend/js/ResizeSensor.js')}} "></script>
   <script src="{{asset('backend/js/dashboard.js')}} "></script>
+
   <script src="{{asset('backend/lib/jquery/jquery.js')}} "></script>
+
   <script src="{{asset('backend/lib/popper.js/popper.js')}} "></script>
   <script src="{{asset('backend/lib/bootstrap/bootstrap.js')}} "></script>
   <script src="{{asset('backend/lib/jquery-ui/jquery-ui.js')}} "></script>
@@ -90,6 +95,24 @@
   <script src="{{asset('backend/lib/datatables-responsive/dataTables.responsive.js')}} "></script>
   <script src="{{asset('backend/lib/select2/js/select2.min.js')}} "></script>
   <script src="{{asset('backend/js/starlight.js')}} "></script>
+  <script src="{{asset('backend/js/ResizeSensor.js')}} "></script>
+
+
+  <script src="{{ asset('https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js')}}"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+
+  <!-- <script src="{{asset('backend/lib/jquery/jquery.js')}} "></script>
+  <script src="{{asset('backend/lib/popper.js/popper.js')}} "></script>
+  <script src="{{asset('backend/lib/bootstrap/bootstrap.js')}} "></script>
+  <script src="{{asset('backend/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js')}} "></script> 
+  <script src="{{asset('backend/lib/highlightjs/highlight.pack.js')}} "></script>
+  <script src="{{asset('backend/lib/datatables/jquery.dataTables.js')}} "></script>
+  <script src="{{asset('backend/lib/datatables-responsive/dataTables.responsive.js')}} "></script>
+  <script src="{{asset('backend/lib/select2/js/select2.min.js')}} "></script>
+  <script src="{{asset('backend/js/starlight.js')}} "></script>  -->
+
 
   <script>
     $(function() {
@@ -117,6 +140,52 @@
 
     });
   </script>
+
+  <script>
+    $(document).on("click", "#delete", function(e) {
+      e.preventDefault();
+      var link = $(this).attr("href");
+      swal({
+          title: "Are you want to delete?",
+          text: "Once Delete, This will be Permanently Delete!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            window.location.href = link;
+          } else {
+            swal("Safe Data!");
+          }
+        });
+    });
+  </script>
+
+<script type="text/javascript">
+        @if(Session::has('message'))
+        var type = "{{ Session::get('alert-type','info')}}"
+        switch(type) {
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
+
+            case 'success':
+                toastr.success("{{ Session::get('message') }}");
+                break;
+
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break;
+        }
+        @endif
+    </script>
+
+
 
 </body>
 

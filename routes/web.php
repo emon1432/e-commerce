@@ -54,5 +54,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Category List
     Route::get('/category/all',[categoryController::class,'allCategory'])->name('category.all');
 
+    //Add Category
+    Route::post('/category/add',[categoryController::class,'addCategory'])->name('add.category');
+
+
     
 });
