@@ -11,14 +11,17 @@ use Illuminate\Support\Facades\Redirect;
 
 class categoryController extends Controller
 {
-    //
-
-    public function allCategory(){
+    //show all category
+    public function allCategory()
+    {
         $categories = category::all();
         return view('admin.category.categoryList',compact('categories'));
     }
 
-    public function addCategory(Request $request){
+
+    //add a new category
+    public function addCategory(Request $request)
+    {
         $validated = $request->validate(
             [
                 'category_name' => 'required|unique:categories|max:50',
@@ -37,6 +40,27 @@ class categoryController extends Controller
             'alert-type' => 'success'
         );
         return Redirect()->back()->with($notification);
+    }
 
+    //Edit category
+
+    public function editCategory($id)
+    {
+    
+        $categoriesFind = category::find($id);
+        return view('admin.category.categoryList', compact('categoriesFind'));
+    }
+
+
+    //delete category
+    public function deleteCategory($id)
+    {
+
+        category::find($id)->delete();
+        $notification = array(
+            'message' => 'Category Deleted Successfully',
+            'alert-type' => 'warning'
+        );
+        return Redirect()->back()->with($notification);
     }
 }

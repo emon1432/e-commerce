@@ -57,6 +57,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Add Category
     Route::post('/category/add',[categoryController::class,'addCategory'])->name('add.category');
 
+    //Delete Category 
+    Route::get('/category/delete/{id}',[categoryController::class,'deleteCategory']);
+
+    //Edit Category
+    Route::get('/category/edit/{id}',[categoryController::class,'editCategory']);
+
+
+
+
 
     
 });
