@@ -61,7 +61,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/category/delete/{id}',[categoryController::class,'deleteCategory']);
 
     //Edit Category
-    Route::get('/category/edit/{id}',[categoryController::class,'editCategory']);
+    // Route::get('/category/edit/{id}',[categoryController::class,'editCategory']);
+
+    //update Category
+    Route::post('/category/update',[categoryController::class,'updateCategory'])->name('update.category');
+
 
 
 

@@ -15,6 +15,7 @@ class categoryController extends Controller
     public function allCategory()
     {
         $categories = category::all();
+        
         return view('admin.category.categoryList',compact('categories'));
     }
 
@@ -44,12 +45,11 @@ class categoryController extends Controller
 
     //Edit category
 
-    public function editCategory($id)
-    {
-    
-        $categoriesFind = category::find($id);
-        return view('admin.category.categoryList', compact('categoriesFind'));
-    }
+    // public function editCategory($id)
+    // {
+        
+    //     return view('admin.category.categoryList', compact('id'));
+    // }
 
 
     //delete category
