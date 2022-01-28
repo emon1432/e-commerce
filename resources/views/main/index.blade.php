@@ -4209,7 +4209,7 @@
 		<!-- Trends -->
 
 		<div class="trends">
-			<div class="trends_background" style="background-image:url('{{ asset(frontend/images/trends_background.jpg)}}')"></div>
+			<div class="trends_background" style="background-image:url({{ asset('frontend/images/trends_background.jpg')}})"></div>
 			<div class="trends_overlay"></div>
 			<div class="container">
 				<div class="row">

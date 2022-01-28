@@ -43,7 +43,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form method="POST" action="{{ route('update.category')}}">
+                                <form method="POST" action="{{url('/category/update/'.$category->id)}}">
                                     @csrf
                                     <div class="modal-body pd-20">
 

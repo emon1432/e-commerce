@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\auth\UserSettingsController;
+use App\Http\Controllers\admin\categoryAndBrands\brandController;
 use App\Http\Controllers\admin\categoryAndBrands\categoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main.index');
 });
 
 
@@ -43,33 +44,46 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
     //User Settings
-    Route::get('/user/settings',[UserSettingsController::class,'userSettings'])->name('user.settings');
+    Route::get('/user/settings', [UserSettingsController::class, 'userSettings'])->name('user.settings');
 
     //Admin Password Update
-    Route::post('/update/password',[UserSettingsController::class,'adminPasswordUpdate'])->name('admin.password.update');
+    Route::post('/update/password', [UserSettingsController::class, 'adminPasswordUpdate'])->name('admin.password.update');
 
 
     //---------->Category<----------
 
     //Category List
-    Route::get('/category/all',[categoryController::class,'allCategory'])->name('category.all');
+    Route::get('/category/all', [categoryController::class, 'allCategory'])->name('category.all');
 
     //Add Category
-    Route::post('/category/add',[categoryController::class,'addCategory'])->name('add.category');
+    Route::post('/category/add', [categoryController::class, 'addCategory'])->name('add.category');
 
     //Delete Category 
-    Route::get('/category/delete/{id}',[categoryController::class,'deleteCategory']);
+    Route::get('/category/delete/{id}', [categoryController::class, 'deleteCategory']);
 
     //Edit Category
     // Route::get('/category/edit/{id}',[categoryController::class,'editCategory']);
 
     //update Category
-    Route::post('/category/update',[categoryController::class,'updateCategory'])->name('update.category');
+    Route::post('/category/update/{id}', [categoryController::class, 'updateCategory']);
 
 
+    //---------->Brand<----------
+
+    //Brand List
+    Route::get('/brand/all', [brandController::class, 'allBrand'])->name('brand.all');
+
+    //Add Brand
+    Route::post('/brand/add', [brandController::class, 'addBrand'])->name('add.brand');
+
+    //Delete Brand 
+    Route::get('/brand/delete/{id}', [brandController::class, 'deleteBrand']);
+
+    //Edit Brand
+    // Route::get('/brand/edit/{id}',[brandController::class,'editBrand']);
+
+    //update Brand
+    Route::post('/brand/update/{id}', [brandController::class, 'updateBrand']);
 
 
-
-
-    
 });

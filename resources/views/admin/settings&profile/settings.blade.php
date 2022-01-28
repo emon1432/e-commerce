@@ -3,9 +3,4 @@
 
 @include('admin.settings&profile.updatePassword')
 
-
-
-
-
-
 @endsection
