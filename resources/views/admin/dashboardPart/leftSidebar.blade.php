@@ -26,7 +26,7 @@
       </a><!-- sl-menu-link -->
       <ul class="sl-menu-sub nav flex-column">
         <li class="nav-item"><a href="{{route('category.all')}}" class="nav-link">Category</a></li>
-        <li class="nav-item"><a href="" class="nav-link">Sub Category</a></li>
+        <li class="nav-item"><a href="{{route('subcategory.all')}}" class="nav-link">Sub Category</a></li>
         <li class="nav-item"><a href="{{route('brand.all')}}" class="nav-link">Brand</a></li>
       </ul>
       <a href="#" class="sl-menu-link">

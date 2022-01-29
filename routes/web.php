@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\auth\UserSettingsController;
 use App\Http\Controllers\admin\categoryAndBrands\brandController;
 use App\Http\Controllers\admin\categoryAndBrands\categoryController;
+use App\Http\Controllers\admin\categoryAndBrands\subCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,6 +69,33 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/category/update/{id}', [categoryController::class, 'updateCategory']);
 
 
+    //---------->Sub Category<----------
+
+    //Sub Category List
+    Route::get('/subcategory/all', [subCategoryController::class, 'allSubCategory'])->name('subcategory.all');
+
+    //Add Sub Category
+    Route::post('/subcategory/add', [subCategoryController::class, 'addSubCategory'])->name('add.subcategory');
+
+    //Delete Sub Category 
+    Route::get('/subcategory/delete/{id}', [subCategoryController::class, 'deleteSubCategory']);
+
+    //Edit Sub Category
+    // Route::get('/subcategory/edit/{id}',[subCategoryController::class,'editSubCategory']);
+
+    //update Category
+    Route::post('/subcategory/update/{id}', [subCategoryController::class, 'updateSubCategory']);
+
+
+
+
+
+
+
+
+
+
+
     //---------->Brand<----------
 
     //Brand List
@@ -84,6 +112,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //update Brand
     Route::post('/brand/update/{id}', [brandController::class, 'updateBrand']);
-
-
 });
