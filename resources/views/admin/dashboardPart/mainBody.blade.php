@@ -40,10 +40,13 @@
   <link href="{{asset('backend/lib/highlightjs/github.css')}} " rel="stylesheet">
   <link href="{{asset('backend/lib/datatables/jquery.dataTables.css')}} " rel="stylesheet">
   <link href="{{asset('backend/lib/select2/css/select2.min.css')}} " rel="stylesheet">
+  <link href="{{asset('backend/lib/summernote/summernote-bs4.css')}}" rel="stylesheet">
 
   <!-- Starlight CSS -->
   <link rel="stylesheet" href="{{asset('backend/css/starlight.css')}} ">
+
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
+
 
   <script src="{{asset('backend/lib/jquery/jquery.js')}} "></script>
 
@@ -94,6 +97,11 @@
   <script src="{{asset('backend/lib/datatables/jquery.dataTables.js')}} "></script>
   <script src="{{asset('backend/lib/datatables-responsive/dataTables.responsive.js')}} "></script>
   <script src="{{asset('backend/lib/select2/js/select2.min.js')}} "></script>
+  <script src="{{asset('backend/lib/medium-editor/medium-editor.js')}} "></script>
+  <script src="{{asset('backend/lib/summernote/summernote-bs4.min.js')}} "></script>
+
+
+
   <script src="{{asset('backend/js/starlight.js')}} "></script>
   <script src="{{asset('backend/js/ResizeSensor.js')}} "></script>
 
@@ -184,6 +192,20 @@
         break;
     }
     @endif
+  </script>
+  <script>
+    $(function() {
+      'use strict';
+
+      // Inline editor
+      var editor = new MediumEditor('.editable');
+
+      // Summernote editor
+      $('#summernote').summernote({
+        height: 150,
+        tooltip: false
+      })
+    });
   </script>
 
 </body>

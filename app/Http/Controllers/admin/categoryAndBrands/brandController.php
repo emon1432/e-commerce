@@ -15,7 +15,8 @@ class brandController extends Controller
         $this->middleware('auth');
     }
 
-    public function allBrand(){
+    public function allBrand()
+    {
         $brands = brand::all();
         return view('admin.category&brand.brandList', compact('brands'));
     }
@@ -102,7 +103,8 @@ class brandController extends Controller
         return Redirect()->back()->with($notification);
     }
 
-    public function deleteBrand($id){
+    public function deleteBrand($id)
+    {
 
         $logo = brand::find($id);
         $old_logo = $logo->brand_logo;
@@ -114,6 +116,5 @@ class brandController extends Controller
             'alert-type' => 'warning'
         );
         return Redirect()->back()->with($notification);
-
     }
 }

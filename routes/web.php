@@ -4,6 +4,10 @@ use App\Http\Controllers\admin\auth\UserSettingsController;
 use App\Http\Controllers\admin\categoryAndBrands\brandController;
 use App\Http\Controllers\admin\categoryAndBrands\categoryController;
 use App\Http\Controllers\admin\categoryAndBrands\subCategoryController;
+use App\Http\Controllers\admin\coupons\couponController;
+use App\Http\Controllers\admin\product\productController;
+use App\Http\Controllers\admin\subscription\subscriberController;
+use App\Models\admin\product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,10 +20,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//All Home Route
 
 Route::get('/', function () {
     return view('main.index');
 });
+
+
+//Add Subscriber
+Route::post('/subscriber/add', [subscriberController::class, 'addSubscriber'])->name('add.subscriber');
+
 
 
 
@@ -49,6 +59,39 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Admin Password Update
     Route::post('/update/password', [UserSettingsController::class, 'adminPasswordUpdate'])->name('admin.password.update');
+
+
+    //---------->Product<----------
+    //Product List
+    Route::get('/products/all', [productController::class, 'allProduct'])->name('products.all');
+
+    //Add Product
+    Route::get('/product/add', [productController::class, 'addProduct'])->name('product.add');
+
+    //Get Sub Category 
+    Route::get('/get/subcategory/{category_id}', [productController::class, 'getSubCategory']);
+
+    //Store Product
+    Route::post('/product/add', [productController::class, 'storeProduct'])->name('add.product');
+
+    //Inactive Product
+    Route::get('/product/inactive/{id}', [productController::class, 'inactiveProduct']);
+
+    //Active Product
+    Route::get('/product/active/{id}', [productController::class, 'activeProduct']);
+
+    //Delete Product
+    Route::get('/product/delete/{id}', [productController::class, 'deleteProduct']);
+
+    //Show Product
+    Route::get('/product/show/{id}', [productController::class, 'showProduct']);
+
+    //Edit Product
+    Route::get('/product/edit/{id}', [productController::class, 'editProduct']);
+
+    //Update Product
+    Route::post('/product/update/{id}', [productController::class, 'updateProduct']);
+
 
 
     //---------->Category<----------
@@ -88,14 +131,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
 
-
-
-
-
-
-
-
-
     //---------->Brand<----------
 
     //Brand List
@@ -112,4 +147,28 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //update Brand
     Route::post('/brand/update/{id}', [brandController::class, 'updateBrand']);
+
+
+
+    //---------->Coupon<----------
+
+    //Coupon List
+    Route::get('/coupon/all', [couponController::class, 'allCoupon'])->name('coupon.all');
+
+    //Add Coupon
+    Route::post('/coupon/add', [couponController::class, 'addCoupon'])->name('add.coupon');
+
+    //Delete Coupon
+    Route::get('/coupon/delete/{id}', [couponController::class, 'deleteCoupon']);
+
+    //Update Coupon
+    Route::post('/coupon/update/{id}', [couponController::class, 'updateCoupon']);
+
+
+    //---------->Subscriber<----------
+    //Subscriber List
+    Route::get('/subscriber/all', [subscriberController::class, 'allSubscriber'])->name('subscriber.all');
+
+    //Delete Subscriber
+    Route::get('/subscriber/delete/{id}', [subscriberController::class, 'deleteSubscriber']);
 });
