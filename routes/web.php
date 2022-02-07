@@ -20,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//All Home Route
 
+//All Home Route
 Route::get('/', function () {
     return view('main.index');
 });
@@ -29,12 +29,6 @@ Route::get('/', function () {
 
 //Add Subscriber
 Route::post('/subscriber/add', [subscriberController::class, 'addSubscriber'])->name('add.subscriber');
-
-
-
-
-
-
 
 
 
@@ -59,7 +53,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Admin Password Update
     Route::post('/update/password', [UserSettingsController::class, 'adminPasswordUpdate'])->name('admin.password.update');
-
 
     //---------->Product<----------
     //Product List

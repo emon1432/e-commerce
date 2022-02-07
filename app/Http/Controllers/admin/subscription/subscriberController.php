@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class subscriberController extends Controller
 {
-    //
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+   
 
     //All Subscriber
     public function allSubscriber()
