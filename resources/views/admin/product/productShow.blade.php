@@ -79,6 +79,13 @@
                         </div>
                     </div>
                     <!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Discount Price: </label><br>
+                            <strong>{{$product->discount_price}}</strong>
+                        </div>
+                    </div>
+                    <!-- col-4 -->
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label class="form-control-label">Product Details: <span class="tx-danger">*</span></label><br>
@@ -97,7 +104,7 @@
                         <div class="form-group">
                             <label class="form-control-label ">Image One (Main Thumbnail): <span class="tx-danger">*</span></label><br>
                             <label class="custom-file">
-                                <img src="{{URL::to($product->image_one)}}">
+                                <img src="{{URL::to($product->image_one)}}" height="300px" width="250px">
                             </label>
                             <br><br><br>
                         </div>
@@ -107,7 +114,7 @@
                         <div class="form-group">
                             <label class="form-control-label ">Image Two: <span class="tx-danger">*</span></label><br>
                             <label class="custom-file">
-                                <img src="{{URL::to($product->image_two)}}">
+                                <img src="{{URL::to($product->image_two)}}" height="300px" width="250px">
                             </label>
                             <br><br><br>
 
@@ -118,9 +125,9 @@
                         <div class="form-group">
                             <label class="form-control-label ">Image Three: <span class="tx-danger">*</span></label><br>
                             <label class="custom-file">
-                                <img src="{{URL::to($product->image_three)}}">
+                                <img src="{{URL::to($product->image_three)}}" height="300px" width="250px">
                             </label>
-                            <br><br><br>
+                            <br><br><br><br><br><br><br>
                         </div>
                     </div>
                     <!-- col-4 -->

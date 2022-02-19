@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 class subscriberController extends Controller
 {
    
-
+    
     //All Subscriber
     public function allSubscriber()
     {

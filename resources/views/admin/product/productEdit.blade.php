@@ -104,6 +104,13 @@
                         </div>
                     </div>
                     <!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Discount Price: </label>
+                            <input class="form-control" type="text" name="discount_price" value="{{$product->discount_price}}" placeholder="Enter Product Price">
+                        </div>
+                    </div>
+                    <!-- col-4 -->
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label class="form-control-label">Product Details: <span class="tx-danger">*</span></label>
@@ -127,7 +134,7 @@
                                 <span class="custom-file-control"></span>
                             </label>
                             <br><br>
-                            <img id="one" src="{{ asset($product->image_one) }}">
+                            <img id="one" src="{{ asset($product->image_one) }}" height="300px" width="250px">
                             <input type="hidden" value="{{ $product->image_one}}" name="old_image_one">
 
                         </div>
@@ -141,7 +148,7 @@
                                 <span class="custom-file-control"></span>
                             </label>
                             <br><br>
-                            <img id="two" src="{{ asset($product->image_two) }}">
+                            <img id="two" src="{{ asset($product->image_two) }}" height="300px" width="250px">
                             <input type="hidden" value="{{ $product->image_two}}" name="old_image_two">
 
                         </div>
@@ -155,7 +162,7 @@
                                 <span class="custom-file-control"></span>
                             </label>
                             <br><br>
-                            <img id="three" src="{{ asset($product->image_three) }}">
+                            <img id="three" src="{{ asset($product->image_three) }}" height="300px" width="250px">
                             <input type="hidden" value="{{ $product->image_three}}" name="old_image_three">
 
                         </div>
