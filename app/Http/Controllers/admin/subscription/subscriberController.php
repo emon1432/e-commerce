@@ -47,6 +47,6 @@ class subscriberController extends Controller
             'message' => 'Subscriber Deleted Successfully!',
             'alert-type' =>'warning'
         );
-        return Redirect()->back()-with($notification);
+        return Redirect()->back()->with($notification);
     }
 }

@@ -47,7 +47,11 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Sub Category: </label><br>
+                            @if($subCategoryName)
                             <strong>{{$product->subcategory_name}}</strong>
+                            @else
+                            <strong>Not Available</strong>
+                            @endif
                         </div>
                     </div>
                     <!-- col-4 -->

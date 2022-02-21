@@ -86,6 +86,9 @@ class productController extends Controller
         $final_image_three = $location . $three_name;
         $image_three->move($location, $three_name);
 
+        if ($request->subcategory_id != true) {
+            $request->subcategory_id = -1;
+        }
         product::insert([
             'product_name' => $request->product_name,
             'product_code' => $request->product_code,
@@ -142,7 +145,9 @@ class productController extends Controller
                 'image_three.*' => 'mimes:jpeg,jpg,png',
             ]
         );
-
+        if ($request->subcategory_id != true) {
+            $request->subcategory_id = -1;
+        }
         product::find($id)->update([
             'product_name' => $request->product_name,
             'product_code' => $request->product_code,
@@ -254,17 +259,49 @@ class productController extends Controller
     //Product Details Show
     public function showProduct($id)
     {
-        $product = DB::table('products')
-            ->join('categories', 'products.category_id', 'categories.id')
-            ->join('brands', 'products.brand_id', 'brands.id')
-            ->join('sub_categories', 'products.subcategory_id', 'sub_categories.id')
-            ->select('products.*', 'categories.category_name', 'brands.brand_name', 'sub_categories.subcategory_name')
-            ->where('products.id', $id)
-            ->first();
+        $subCategoryId = product::find($id);
+
+        // return response()->json($subCategory);
+        $subCategoryName = true;
+        if ($subCategoryId->subcategory_id == -1) {
+            $product = DB::table('products')
+                ->join('categories', 'products.category_id', 'categories.id')
+                ->join('brands', 'products.brand_id', 'brands.id')
+                ->select('products.*', 'categories.category_name', 'brands.brand_name')
+                ->where('products.id', $id)
+                ->first();
+            $subCategoryName = false;
+        } else {
+            $product = DB::table('products')
+                ->join('categories', 'products.category_id', 'categories.id')
+                ->join('brands', 'products.brand_id', 'brands.id')
+                ->join('sub_categories', 'products.subcategory_id', 'sub_categories.id')
+                ->select('products.*', 'categories.category_name', 'brands.brand_name', 'sub_categories.subcategory_name')
+                ->where('products.id', $id)
+                ->first();
+            $subCategoryName = true;
+        }
+        // $product = DB::table('products')
+        //     ->join('categories', 'products.category_id', 'categories.id')
+        //     ->join('brands', 'products.brand_id', 'brands.id')
+        //     ->join('sub_categories', 'products.subcategory_id', 'sub_categories.id')
+        //     ->select('products.*', 'categories.category_name', 'brands.brand_name', 'sub_categories.subcategory_name')
+        //     ->where('products.id', $id)
+        //     ->first();
+
+        // $product = product::join('categories', 'products.category_id', '=', 'categories.id')
+        // ->join('brands', 'products.brand_id', '=', 'brands.id')
+        // ->join('sub_categories', 'products.subcategory_id', '=', 'sub_categories.id')
+        // ->where('products.id', $id)
+        // ->get(['products.*', 'categories.category_name', 'brands.brand_name', 'sub_categories.subcategory_name']);
+
+
+
 
         // return response()->json($product);
 
-        return view('admin.product.productShow', compact('product'));
+
+        return view('admin.product.productShow', compact('product','subCategoryName'));
     }
 
     //Product Delete

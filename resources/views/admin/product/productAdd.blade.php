@@ -12,9 +12,12 @@
     <form action="{{ route('add.product')}}" method="post" enctype="multipart/form-data">
         @csrf
 
+
+
+
         <div class="card pd-20 pd-sm-40">
             <h6 class="card-body-title">Add a New Product</h6>
-            <p class="mg-b-20 mg-sm-b-30">Red (*) mark must be required!</p>
+            <p class="mg-b-20 mg-sm-b-30">Red (<span class="tx-danger">*</span>) mark must be required!</p>
             <div class="form-layout">
                 <div class="row mg-b-25">
                     <div class="col-lg-4">
