@@ -23,8 +23,12 @@ use Illuminate\Support\Facades\Route;
 
 //All Home Route
 Route::get('/', function () {
-    return view('main.index');
+    return view('main.clientsPart.home');
 });
+
+Route::get('/user/login', function () {
+    return view('main.clientsPart.register&login');
+})->name('user.login');
 
 
 //Add Subscriber
@@ -54,7 +58,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Admin Password Update
     Route::post('/update/password', [UserSettingsController::class, 'adminPasswordUpdate'])->name('admin.password.update');
 
+
     //---------->Product<----------
+
     //Product List
     Route::get('/products/all', [productController::class, 'allProduct'])->name('products.all');
 
