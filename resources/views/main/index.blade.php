@@ -28,11 +28,9 @@
 
 <body>
 	<div class="super_container">
-		@if(basename($_SERVER['PHP_SELF']) == 'index.php')
+
 		@include('main.clientsPart.header')
-		@else
-		@include('main.clientsPart.miniHeader')
-		@endif
+
 
 		@yield('mainBody')
 

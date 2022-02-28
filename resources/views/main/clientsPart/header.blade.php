@@ -33,11 +33,21 @@
                                     </ul>
                                 </li>
                             </ul>
+
+                            
                         </div>
+                        @guest
                         <div class="top_bar_user">
                             <div class="user_icon"><img src="{{ asset('frontend/images/user.svg')}}" alt=""></div>
                             <div><a href="{{ route('user.login') }}">Sign in /Register</a></div>
                         </div>
+                        @else
+                        <div class="top_bar_user">
+                            <div class="user_icon"><img src="{{ asset('frontend/images/user.svg')}}" alt=""></div>
+                            <div><a href="{{ route('user.login') }}">Profile</a></div>
+                        </div>
+                        @endguest
+
                     </div>
                 </div>
             </div>
@@ -115,8 +125,8 @@
         </div>
     </div>
 
+    @if(basename($_SERVER['PHP_SELF']) == 'index.php')
     <!-- Main Navigation -->
-
     <nav class="main_nav">
         <div class="container">
             <div class="row">
@@ -126,7 +136,7 @@
 
                         <!-- Categories Menu -->
 
-                        <div class="cat_menu_container" >
+                        <div class="cat_menu_container">
                             <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
                                 <div class="cat_burger"><span></span><span></span><span></span></div>
                                 <div class="cat_menu_text">categories</div>
@@ -233,6 +243,10 @@
             </div>
         </div>
     </nav>
+    @endif
+
+
+
 
     <!-- Menu -->
     <!-- <div class="page_menu">

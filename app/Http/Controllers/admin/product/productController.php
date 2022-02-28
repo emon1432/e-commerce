@@ -9,16 +9,21 @@ use App\Models\admin\product;
 use App\Models\admin\subCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\FuncCall;
 
 class productController extends Controller
 {
     //
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+
+    //     if (Auth::user()->user_role != 1) {
+    //         return view('main.clientsPart.home');
+    //     }
+    // }
 
     public function allProduct()
     {
@@ -177,8 +182,9 @@ class productController extends Controller
 
         if ($image_one) {
             $old_image = $request->old_image_one;
-            unlink($old_image);
-
+            if ($old_image) {
+                unlink($old_image);
+            }
             $name_gen = hexdec(uniqid());
             $image_ext = strtolower($image_one->getClientOriginalExtension());
             $one_name = $name_gen . '.' . $image_ext;
@@ -192,7 +198,9 @@ class productController extends Controller
         }
         if ($image_two) {
             $old_image = $request->old_image_two;
-            unlink($old_image);
+            if ($old_image) {
+                unlink($old_image);
+            }
 
             $name_gen = hexdec(uniqid());
             $image_ext = strtolower($image_two->getClientOriginalExtension());
@@ -207,7 +215,9 @@ class productController extends Controller
         }
         if ($image_three) {
             $old_image = $request->old_image_three;
-            unlink($old_image);
+            if ($old_image) {
+                unlink($old_image);
+            }
 
             $name_gen = hexdec(uniqid());
             $image_ext = strtolower($image_three->getClientOriginalExtension());
@@ -301,7 +311,7 @@ class productController extends Controller
         // return response()->json($product);
 
 
-        return view('admin.product.productShow', compact('product','subCategoryName'));
+        return view('admin.product.productShow', compact('product', 'subCategoryName'));
     }
 
     //Product Delete

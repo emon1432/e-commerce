@@ -7,7 +7,9 @@ use App\Http\Controllers\admin\categoryAndBrands\subCategoryController;
 use App\Http\Controllers\admin\coupons\couponController;
 use App\Http\Controllers\admin\product\productController;
 use App\Http\Controllers\admin\subscription\subscriberController;
-use App\Models\admin\product;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,10 +48,17 @@ Route::post('/subscriber/add', [subscriberController::class, 'addSubscriber'])->
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('admin.index');
-    })->name('dashboard');
 
+
+
+    Route::get('/dashboard', function () {
+        if (Auth::user()->user_role == 0) {
+            return view('main.clientsPart.userProfile');
+        }
+        if (Auth::user()->user_role == 1) {
+            return view('admin.index');
+        }
+    })->name('dashboard');
 
 
     //User Settings

@@ -5,7 +5,7 @@
 <div class="contact_form">
     <div class="container">
         <div class="row">
-            <div class="col-lg-5 offset-lg-1" >
+            <div class="col-lg-5 offset-lg-1">
                 <div class="contact_form_container" style="border: 1px solid grey; padding:20px; border-radius: 25px;">
                     <div class="contact_form_title text-center">Sign In</div>
 
@@ -28,7 +28,9 @@
                     <button type="submit" class="btn btn-primary btn-block"><i class="fab fa-facebook-square"></i> Login with Facebook</button>
                     <button type="submit" class="btn btn-danger btn-block"><i class="fab fa-google"></i> Login with Google</button>
                 </div>
+                <br><br><br>
             </div>
+
             <div class="col-lg-5 offset-lg-1" style="border: 1px solid grey; padding:20px; border-radius: 25px;">
                 <div class="contact_form_container">
                     <div class="contact_form_title text-center">Sign Up</div>
@@ -51,6 +53,10 @@
                         <div class="form-group">
                             <label for="password_confirmation">Confirm Password</label>
                             <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                        </div><!-- form-group -->
+                        <div class="form-group">
+                            <!-- <label for="user_role">User Role</label> -->
+                            <input type="hidden" class="form-control" name="user_role" value="0">
                         </div><!-- form-group -->
                         @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                         <div class="mt-4">

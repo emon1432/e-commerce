@@ -7,7 +7,10 @@
 $slider = DB::table('products')
 ->join('brands','products.brand_id','brands.id')
 ->select('products.*','brands.brand_name')
-->where('main_slider',1)->orderBy('id','DESC')->first();
+->where('main_slider',1)
+->where('status',1)
+->orderBy('id','DESC')
+->first();
 @endphp
 
 <div class="banner">

@@ -69,13 +69,17 @@
                     <label for="password_confirmation">Confirm Password</label>
                     <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
                 </div><!-- form-group -->
+                <div class="form-group">
+                    <!-- <label for="user_role">User Role</label> -->
+                    <input type="hidden" class="form-control" name="user_role" value="1">
+                </div><!-- form-group -->
                 @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
                     <x-jet-label for="terms">
                         <div class="flex items-center">
 
                             <div class="ml-2">
-                            <x-jet-checkbox name="terms" id="terms" />
+                                <x-jet-checkbox name="terms" id="terms" />
 
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
                                 'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms').'</a>',
