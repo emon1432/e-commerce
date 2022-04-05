@@ -37,8 +37,22 @@ Route::get('/user/login', function () {
 Route::post('/subscriber/add', [subscriberController::class, 'addSubscriber'])->name('add.subscriber');
 
 
+// Route::middleware(['first', 'second'])->group(function () {
+//     Route::get('/', function () {
+//         // Uses first & second middleware...
+//     });
 
+//     Route::get('/user/profile', function () {
+//         // Uses first & second middleware...
+//     });
+// });
 
+Route::middleware(['auth:sanctum', 'verified', 'customer'])->group(function () {
+
+    Route::get('/pro', function () {
+        return view('main.clientsPart.userProfile');
+    });
+});
 
 
 
@@ -46,26 +60,22 @@ Route::post('/subscriber/add', [subscriberController::class, 'addSubscriber'])->
 
 // ---------->Admin Panel Route Group<----------
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->group(function () {
 
-
-
-
+    //Dashboard
     Route::get('/dashboard', function () {
-        if (Auth::user()->user_role == 0) {
-            return view('main.clientsPart.userProfile');
-        }
-        if (Auth::user()->user_role == 1) {
-            return view('admin.index');
-        }
+        return view('admin.index');
     })->name('dashboard');
 
+    //----------->Profile<----------
 
     //User Settings
     Route::get('/user/settings', [UserSettingsController::class, 'userSettings'])->name('user.settings');
 
     //Admin Password Update
     Route::post('/update/password', [UserSettingsController::class, 'adminPasswordUpdate'])->name('admin.password.update');
+
+
 
 
     //---------->Product<----------
@@ -76,7 +86,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Add Product
     Route::get('/product/add', [productController::class, 'addProduct'])->name('product.add');
 
-    //Get Sub Category 
+    //Get Sub Category
     Route::get('/get/subcategory/{category_id}', [productController::class, 'getSubCategory']);
 
     //Store Product
@@ -102,6 +112,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
 
+
+
     //---------->Category<----------
 
     //Category List
@@ -110,7 +122,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Add Category
     Route::post('/category/add', [categoryController::class, 'addCategory'])->name('add.category');
 
-    //Delete Category 
+    //Delete Category
     Route::get('/category/delete/{id}', [categoryController::class, 'deleteCategory']);
 
     //Edit Category
@@ -118,6 +130,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //update Category
     Route::post('/category/update/{id}', [categoryController::class, 'updateCategory']);
+
+
+
 
 
     //---------->Sub Category<----------
@@ -128,7 +143,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Add Sub Category
     Route::post('/subcategory/add', [subCategoryController::class, 'addSubCategory'])->name('add.subcategory');
 
-    //Delete Sub Category 
+    //Delete Sub Category
     Route::get('/subcategory/delete/{id}', [subCategoryController::class, 'deleteSubCategory']);
 
     //Edit Sub Category
@@ -136,6 +151,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //update Category
     Route::post('/subcategory/update/{id}', [subCategoryController::class, 'updateSubCategory']);
+
+
 
 
 
@@ -147,7 +164,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Add Brand
     Route::post('/brand/add', [brandController::class, 'addBrand'])->name('add.brand');
 
-    //Delete Brand 
+    //Delete Brand
     Route::get('/brand/delete/{id}', [brandController::class, 'deleteBrand']);
 
     //Edit Brand
@@ -155,6 +172,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //update Brand
     Route::post('/brand/update/{id}', [brandController::class, 'updateBrand']);
+
 
 
 
@@ -173,6 +191,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/coupon/update/{id}', [couponController::class, 'updateCoupon']);
 
 
+
+    
     //---------->Subscriber<----------
     //Subscriber List
     Route::get('/subscriber/all', [subscriberController::class, 'allSubscriber'])->name('subscriber.all');
