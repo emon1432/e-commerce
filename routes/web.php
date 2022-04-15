@@ -23,38 +23,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//All Home Route
+//---------->All Home Route<----------
+
+//Home
 Route::get('/', function () {
     return view('main.clientsPart.home');
 });
 
+//Login
 Route::get('/user/login', function () {
     return view('main.clientsPart.register&login');
 })->name('user.login');
-
 
 //Add Subscriber
 Route::post('/subscriber/add', [subscriberController::class, 'addSubscriber'])->name('add.subscriber');
 
 
-// Route::middleware(['first', 'second'])->group(function () {
-//     Route::get('/', function () {
-//         // Uses first & second middleware...
-//     });
-
-//     Route::get('/user/profile', function () {
-//         // Uses first & second middleware...
-//     });
-// });
+//---------->Customer Route Group<----------
+Route::get('/', function () {
+    return view('main.clientsPart.home');
+});
 
 Route::middleware(['auth:sanctum', 'verified', 'customer'])->group(function () {
 
-    Route::get('/pro', function () {
-        return view('main.clientsPart.userProfile');
-    });
+    
+
+
+
+
 });
-
-
 
 
 
@@ -74,8 +71,6 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->group(function () {
 
     //Admin Password Update
     Route::post('/update/password', [UserSettingsController::class, 'adminPasswordUpdate'])->name('admin.password.update');
-
-
 
 
     //---------->Product<----------
@@ -112,8 +107,6 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->group(function () {
 
 
 
-
-
     //---------->Category<----------
 
     //Category List
@@ -124,9 +117,6 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->group(function () {
 
     //Delete Category
     Route::get('/category/delete/{id}', [categoryController::class, 'deleteCategory']);
-
-    //Edit Category
-    // Route::get('/category/edit/{id}',[categoryController::class,'editCategory']);
 
     //update Category
     Route::post('/category/update/{id}', [categoryController::class, 'updateCategory']);
@@ -146,12 +136,9 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->group(function () {
     //Delete Sub Category
     Route::get('/subcategory/delete/{id}', [subCategoryController::class, 'deleteSubCategory']);
 
-    //Edit Sub Category
-    // Route::get('/subcategory/edit/{id}',[subCategoryController::class,'editSubCategory']);
 
     //update Category
     Route::post('/subcategory/update/{id}', [subCategoryController::class, 'updateSubCategory']);
-
 
 
 
@@ -167,8 +154,6 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->group(function () {
     //Delete Brand
     Route::get('/brand/delete/{id}', [brandController::class, 'deleteBrand']);
 
-    //Edit Brand
-    // Route::get('/brand/edit/{id}',[brandController::class,'editBrand']);
 
     //update Brand
     Route::post('/brand/update/{id}', [brandController::class, 'updateBrand']);
