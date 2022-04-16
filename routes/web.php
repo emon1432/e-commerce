@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\categoryAndBrands\subCategoryController;
 use App\Http\Controllers\admin\coupons\couponController;
 use App\Http\Controllers\admin\product\productController;
 use App\Http\Controllers\admin\subscription\subscriberController;
+use App\Http\Controllers\home\cartAndWishlistController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -46,12 +47,23 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified', 'customer'])->group(function () {
 
+
+    
+
     
 
 
 
 
 });
+
+//Add to wishlist
+Route::post('/addToWishList',[cartAndWishlistController::class, 'addToWishlist']);
+
+
+
+
+
 
 
 

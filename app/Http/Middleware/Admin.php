@@ -20,10 +20,7 @@ class Admin
         if($role = Auth::user()->user_role == 1){
             return $next($request);
         }
-        $notification = array(
-            'message' => 'You have not admin access',
-            'alert-type' => 'danger'
-        );
-        return redirect('/')->with($notification);
+        
+        return back();
     }
 }

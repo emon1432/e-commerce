@@ -17,11 +17,11 @@ class Customer
      */
     public function handle(Request $request, Closure $next)
     {
-        if($role = Auth::user()->user_role == 0){
-            
+        if ($role = Auth::user()->user_role == 0) {
+
             // return response()->json($role);
             return $next($request);
-        }
+        } 
         return back();
     }
 }
