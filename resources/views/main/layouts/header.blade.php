@@ -130,7 +130,7 @@ $auth_user = Auth::user();
                             <div class="wishlist_icon"><img src="{{ asset('frontend/images/heart.png') }}" alt="">
                             </div>
                             <div class="wishlist_content">
-                                <div class="wishlist_text"><a href="#">Wishlists</a></div>
+                                <div class="wishlist_text"><a href="{{ url('user/wishlist') }}">Wishlists</a></div>
                                 <div class="wishlist_count"><strong>{{$wishlist_item??0}}</strong></div>
                             </div>
                         </div>
@@ -154,8 +154,11 @@ $auth_user = Auth::user();
         </div>
     </div>
 
-    @if (basename($_SERVER['PHP_SELF']) == 'index.php')
+    @if (basename($_SERVER['PHP_SELF']) != 'login')
         <!-- Main Navigation -->
+        <?php
+        // echo basename($_SERVER['PHP_SELF']);
+        ?>
         <nav class="main_nav">
             <div class="container">
                 <div class="row">

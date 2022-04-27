@@ -47,11 +47,9 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified', 'customer'])->group(function () {
 
+    Route::get('user/wishlist',[cartAndWishlistController::class,'showAllWishlistItem']);
 
     
-
-    
-
 
 
 
@@ -60,6 +58,7 @@ Route::middleware(['auth:sanctum', 'verified', 'customer'])->group(function () {
 //Add to wishlist
 Route::post('/addToWishList',[cartAndWishlistController::class, 'addToWishlist']);
 
+// Route::get('user/wishlist',[ccartAndWishlistControllera::class,'showAllWishlistItem']);
 
 
 

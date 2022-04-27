@@ -19,6 +19,13 @@ class cartAndWishlistController extends Controller
         }
     }
 
+    public function showAllWishlistItem(){
+        return view('main.clientsPart.wishlist');
+    }
+
+
+
+
     //Add to wishlist
     public function addToWishlist(Request $request)
     {
