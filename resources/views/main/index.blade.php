@@ -33,12 +33,12 @@
 <body>
     <div class="super_container">
 
-        @include('main.clientsPart.header')
+        @include('main.layouts.header')
 
 
         @yield('mainBody')
 
-        @include('main.clientsPart.footer')
+        @include('main.layouts.footer')
     </div>
 
     <script src="{{ asset('frontend/js/jquery-3.3.1.min.js') }}"></script>
@@ -105,14 +105,14 @@
 
     {{-- Wishlist and Cart --}}
     <script>
-		$(document).ready(function(){
+        $(document).ready(function() {
 
-			//Add to wishlist
+            //Add to wishlist
 
-			$(".add_to_wishlist").click(function() {
+            $(".add_to_wishlist").click(function() {
                 //   alert('ok');
                 var product_id = $(this).find("input").val();
-				// console.log(product_id);
+                // console.log(product_id);
 
                 $.ajax({
                     type: "POST",
@@ -122,22 +122,29 @@
                         product_id: product_id,
                     },
                     success: function(response) {
-						console.log(response);
-						
-                        // if (response[0] == "not_login") {
-                        //     window.location = "/user-login";
-                        //     toastr.warning(response[1].message);
-                        // } else {
-                        //     // console.log(response[1]);
-                        //     $(".wishlist_count").html(response[0]);
-                        //     // console.log(response[1].message);
-                        //     if (response[2] == 0) {
-                        //         toastr.warning(response[1].message);
-                        //     } else {
-                        //         toastr.success(response[1].message);
-                        //     }
-                        //     // console.log(data)
-                        // }
+                        // console.log(response);
+
+                        if (response[0] == false) {
+                            window.location = "/user/login";
+                            toastr.warning(response[1].message);
+                        } else {
+                            if (response[2] == 'new_add') {
+                                toastr.success(response[1].message);
+                                $("#activeWishlistItem").attr("class", "activeWishlistItem");
+                                $(".wishlist_count").html(response[0]);
+                            } else if (response[2] == 'already') {
+                                toastr.warning(response[1].message);
+                            }
+                            // console.log("huuuu");
+                            // console.log(response[1]);
+                            //     // console.log(response[1].message);
+                            //     if (response[2] == 0) {
+                            //         toastr.warning(response[1].message);
+                            //     } else {
+                            //         toastr.success(response[1].message);
+                            //     }
+                            //     // console.log(data)
+                        }
 
                         // $('.shop_toolbar').hide();
                     },
@@ -145,7 +152,7 @@
             });
 
 
-		});
+        });
     </script>
 
 

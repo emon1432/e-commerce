@@ -1,3 +1,6 @@
+@php
+$auth_user = Auth::user();
+@endphp
 <!-- Header -->
 <header class="header">
 
@@ -113,15 +116,22 @@
                     </div>
                 </div>
 
-                <!-- Wishlist -->
+                <!-- Wishlist and Cart-->
                 <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+                    {{-- Wishlist --}}
+                    @php
+                    if(Auth::user()){
+                        $wishlist_item = DB::table('wishlists')->where('user_id',$auth_user->id)->get();
+                        $wishlist_item = count($wishlist_item);
+                    }
+                    @endphp
                     <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                         <div class="wishlist d-flex flex-row align-items-center justify-content-end">
                             <div class="wishlist_icon"><img src="{{ asset('frontend/images/heart.png') }}" alt="">
                             </div>
                             <div class="wishlist_content">
-                                <div class="wishlist_text"><a href="#">Wishlist</a></div>
-                                <div class="wishlist_count">115</div>
+                                <div class="wishlist_text"><a href="#">Wishlists</a></div>
+                                <div class="wishlist_count"><strong>{{$wishlist_item??0}}</strong></div>
                             </div>
                         </div>
 
@@ -130,11 +140,11 @@
                             <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                 <div class="cart_icon">
                                     <img src="{{ asset('frontend/images/cart.png') }}" alt="">
-                                    <div class="cart_count"><span>10</span></div>
+                                    <div class="cart_count"><span><strong>10</strong></span></div>
                                 </div>
                                 <div class="cart_content">
                                     <div class="cart_text"><a href="#">Cart</a></div>
-                                    <div class="cart_price">$85</div>
+                                    <div class="cart_price"><strong>$85</strong></div>
                                 </div>
                             </div>
                         </div>
