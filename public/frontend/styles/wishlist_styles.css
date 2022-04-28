@@ -31,9 +31,10 @@
 
 .table-wishlist tr td .img-product {
     width: 72px;
-    float: left;
+    /* float: left;
     margin-left: 8px;
-    margin-right: 31px;
+    margin-right: 31px; */
+    margin: 0 auto;
     line-height: 63px;
 }
 
@@ -46,7 +47,7 @@
     color: #484848;
     padding-top: 8px;
     line-height: 24px;
-    width: 50%;
+    width: 100%;
 }
 
 .table-wishlist tr td.price {
@@ -73,11 +74,11 @@
 
 .round-black-btn {
     border-radius: 25px;
-    background: #212529;
+    background: #0E8CE4;
     color: #fff;
     padding: 5px 20px;
     display: inline-block;
-    border: solid 2px #212529;
+    border: solid 2px;
     transition: all 0.5s ease-in-out 0s;
     cursor: pointer;
     font-size: 14px;
@@ -155,8 +156,18 @@
     margin-top: 40px !important;
 }
 
-.in-stock-box {
+.in-out-of-stock-box {
     background: #ff0000;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 25px;
+    padding: 4px 15px;
+    display: inline-block;
+    color: #fff;
+}
+
+.in-stock-box {
+    background: #0E8CE4;
     font-size: 12px;
     text-align: center;
     border-radius: 25px;
@@ -167,5 +178,5 @@
 
 .trash-icon {
     font-size: 20px;
-    color: #212529;
+    color: red;
 }

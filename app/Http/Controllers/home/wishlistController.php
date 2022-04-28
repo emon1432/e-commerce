@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\home\wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-
-class cartAndWishlistController extends Controller
+class wishlistController extends Controller
 {
     public function authCheck()
     {
@@ -19,11 +19,20 @@ class cartAndWishlistController extends Controller
         }
     }
 
-    public function showAllWishlistItem(){
-        return view('main.clientsPart.wishlist');
+    public function showAllWishlistItem()
+    {
+        $user_id = Auth::user()->id;
+
+        $wishlist_items = DB::table('wishlists')
+            ->join('products', 'wishlists.product_id', 'products.id')
+            ->where('wishlists.user_id', $user_id)
+            ->select('products.*', 'wishlists.*')
+            ->get();
+
+        // return response()->json($wishlist_items);
+
+        return view('main.clientsPart.wishlist', compact('wishlist_items'));
     }
-
-
 
 
     //Add to wishlist
@@ -59,6 +68,25 @@ class cartAndWishlistController extends Controller
                 'message' => 'You should log in first !!!'
             );
             return [false, $notification];
+        }
+    }
+
+    //Delete Wishlist
+    public function deleteWishlistItem(Request $request)
+    {
+        $item_id = $request->wishlist_item_id;
+
+        $value = DB::table('wishlists')
+            ->where('user_id', Auth::user()->id)
+            ->where('id', $item_id);
+
+        if ($value->delete()) {
+            $list_item = DB::table('wishlists')->where('user_id', Auth::user()->id)->get();
+            $countval = count($list_item);
+            $notification = array(
+                'message' => 'Product deleted successfully',
+            );
+            return [$countval, $notification];
         }
     }
 }

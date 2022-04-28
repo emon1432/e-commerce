@@ -103,17 +103,11 @@
         @endif
     </script>
 
-    {{-- Wishlist and Cart --}}
     <script>
         $(document).ready(function() {
-
             //Add to wishlist
-
             $(".add_to_wishlist").click(function() {
-                //   alert('ok');
                 var product_id = $(this).find("input").val();
-                // console.log(product_id);
-
                 $.ajax({
                     type: "POST",
                     url: "/addToWishList",
@@ -122,8 +116,6 @@
                         product_id: product_id,
                     },
                     success: function(response) {
-                        // console.log(response);
-
                         if (response[0] == false) {
                             window.location = "/user/login";
                             toastr.warning(response[1].message);
@@ -135,30 +127,31 @@
                             } else if (response[2] == 'already') {
                                 toastr.warning(response[1].message);
                             }
-                            // console.log("huuuu");
-                            // console.log(response[1]);
-                            //     // console.log(response[1].message);
-                            //     if (response[2] == 0) {
-                            //         toastr.warning(response[1].message);
-                            //     } else {
-                            //         toastr.success(response[1].message);
-                            //     }
-                            //     // console.log(data)
-                        }
 
-                        // $('.shop_toolbar').hide();
+                        }
                     },
                 });
             });
-
-
+            //Delete Wishlists Items
+            $(".remove_wishlist").click(function() {
+                var wishlist_item_id = $(this).find("input").val();
+                var element = this;
+                $.ajax({
+                    type: "POST",
+                    url: "/wishlist_delete",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        wishlist_item_id: wishlist_item_id,
+                    },
+                    success: function(response) {
+                        $(element).closest("tr").fadeOut();
+                        $(".wishlist_count").html(response[0]);
+                        toastr.error(response[1].message);
+                    },
+                });
+            });
         });
     </script>
-
-
-
-
-
 </body>
 
 </html>

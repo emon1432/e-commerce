@@ -7,7 +7,8 @@ use App\Http\Controllers\admin\categoryAndBrands\subCategoryController;
 use App\Http\Controllers\admin\coupons\couponController;
 use App\Http\Controllers\admin\product\productController;
 use App\Http\Controllers\admin\subscription\subscriberController;
-use App\Http\Controllers\home\cartAndWishlistController;
+use App\Http\Controllers\home\wishlistController;
+use App\Models\home\wishlist;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -47,7 +48,8 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified', 'customer'])->group(function () {
 
-    Route::get('user/wishlist',[cartAndWishlistController::class,'showAllWishlistItem']);
+    Route::get('user/wishlist',[wishlistController::class,'showAllWishlistItem']);
+    Route::post('/wishlist_delete',[wishlistController::class, 'deleteWishlistItem']);
 
     
 
@@ -56,9 +58,8 @@ Route::middleware(['auth:sanctum', 'verified', 'customer'])->group(function () {
 });
 
 //Add to wishlist
-Route::post('/addToWishList',[cartAndWishlistController::class, 'addToWishlist']);
+Route::post('/addToWishList',[wishlistController::class, 'addToWishlist']);
 
-// Route::get('user/wishlist',[ccartAndWishlistControllera::class,'showAllWishlistItem']);
 
 
 
