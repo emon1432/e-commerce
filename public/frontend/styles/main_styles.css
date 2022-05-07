@@ -3401,11 +3401,11 @@ select option {
 }
 
 .brands_item {
-    height: 100%;
+    height: 100px;
 }
 
 .brands_item img {
-    max-width: 100%;
+    max-width: 100px;
 }
 
 .brands_nav {

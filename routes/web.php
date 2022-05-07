@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\categoryAndBrands\subCategoryController;
 use App\Http\Controllers\admin\coupons\couponController;
 use App\Http\Controllers\admin\product\productController;
 use App\Http\Controllers\admin\subscription\subscriberController;
+use App\Http\Controllers\home\allProductsController;
 use App\Http\Controllers\home\wishlistController;
 use App\Models\home\wishlist;
 use App\Models\User;
@@ -32,6 +33,10 @@ Route::get('/', function () {
     return view('main.clientsPart.home');
 });
 
+Route::get('all/products', [allProductsController::class, 'allProducts']);
+
+
+
 //Login
 Route::get('/user/login', function () {
     return view('main.clientsPart.register&login');
@@ -41,6 +46,9 @@ Route::get('/user/login', function () {
 Route::post('/subscriber/add', [subscriberController::class, 'addSubscriber'])->name('add.subscriber');
 
 
+
+
+
 //---------->Customer Route Group<----------
 Route::get('/', function () {
     return view('main.clientsPart.home');
@@ -48,17 +56,12 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified', 'customer'])->group(function () {
 
-    Route::get('user/wishlist',[wishlistController::class,'showAllWishlistItem']);
-    Route::post('/wishlist_delete',[wishlistController::class, 'deleteWishlistItem']);
-
-    
-
-
-
+    Route::get('user/wishlist', [wishlistController::class, 'showAllWishlistItem']);
+    Route::post('/wishlist_delete', [wishlistController::class, 'deleteWishlistItem']);
 });
 
 //Add to wishlist
-Route::post('/addToWishList',[wishlistController::class, 'addToWishlist']);
+Route::post('/addToWishList', [wishlistController::class, 'addToWishlist']);
 
 
 
@@ -189,7 +192,7 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->group(function () {
 
 
 
-    
+
     //---------->Subscriber<----------
     //Subscriber List
     Route::get('/subscriber/all', [subscriberController::class, 'allSubscriber'])->name('subscriber.all');
