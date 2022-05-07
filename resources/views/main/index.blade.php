@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/main_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
-    @if (basename($_SERVER['PHP_SELF']) != 'index.php')
+    @if (Request::path() != '/')
         <style>
             .cat_menu_container ul {
                 visibility: hidden;
