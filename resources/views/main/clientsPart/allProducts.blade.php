@@ -3,7 +3,7 @@
     
 @foreach($allProducts as $item)
 
-<p>{{$item->product_name}}</p>
+<h1>{{$item->product_name}}</h1>
 
 
 @endforeach
